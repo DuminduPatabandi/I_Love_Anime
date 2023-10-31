@@ -8,6 +8,7 @@ const Form = () => {
 
   const [myName, setMyName] = useState('I');
   const [anime, setAnime] = useState('');
+  const [tableData, setTableData] = useState([]);
 
   function handleSubmit()  {
     e.preventDefault()
@@ -28,7 +29,7 @@ const Form = () => {
           </div>
 
           <h1 class=" text-2xl font-poppins my-6 text-center font-semibold text-black capitalize sm:text-3xl ">
-          { myName } Love Anime
+          <span className="text-[#ff58e7]">{ myName }</span> Love Anime
           </h1>
 
           <div class="relative flex items-center mt-8">

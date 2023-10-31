@@ -1,4 +1,4 @@
-
+import * as echarts from 'echarts';
 
 const Chart = () => {
   return (
