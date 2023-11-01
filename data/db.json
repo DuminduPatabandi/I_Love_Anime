@@ -1,14 +1,19 @@
 {
   "vote": [
     {
-      "myName": "Katarina",
-      "anime": "Naruto",
-      "id": 1
+      "myName": "Vihanga",
+      "anime": "One Piece",
+      "id": 2
     },
     {
       "myName": "Babara",
-      "anime": "Other",
-      "id": 2
+      "anime": "Naruto",
+      "id": 3
+    },
+    {
+      "myName": "Kasun",
+      "anime": "Attack on Titan",
+      "id": 4
     }
   ]
 }

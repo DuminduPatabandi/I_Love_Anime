@@ -9,6 +9,7 @@ const Form = () => {
   const [myName, setMyName] = useState('I');
   const [anime, setAnime] = useState('Naruto');
   const [vote, setVote] = useState(null);
+  const [editId, setEditId] = useState(null);
 
   const fetchVoteData = async () => {
     try {
@@ -20,15 +21,36 @@ const Form = () => {
     }
   };
 
+  const editVote = (id) => {
+    const selectedVote = vote.find(item => item.id === id);
+    setEditId(id);
+    setMyName(selectedVote.myName);
+    setAnime(selectedVote.anime);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const vote = { myName, anime }
 
-      fetch('http://localhost:8000/vote', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
+    if (editId) {
+      fetch(`http://localhost:8000/vote/${editId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(vote)
-      }).then(() => fetchVoteData())
+      }).then(() => {
+        setMyName('');
+        setAnime('');
+        setEditId(null);
+        fetchVoteData();
+      }).catch(error => console.error('Error updating vote:', error));
+    }else {
+      
+            fetch('http://localhost:8000/vote', {
+              method: 'POST',
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify(vote)
+            }).then(() => fetchVoteData())
+    }
 
   }
 
@@ -102,7 +124,7 @@ const Form = () => {
         </form>
       </div>
 
-      {vote && <Table vote={vote} setVote={setVote}/>}
+      {vote && <Table vote={vote} setVote={setVote} editVote={editVote}/>}
 
     </>
   );
