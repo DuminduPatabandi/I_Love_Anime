@@ -1,26 +1,54 @@
+import { PencilIcon, UserIcon } from "@heroicons/react/24/outline"
 
+const Table = ({ vote, setVote }) => {
 
-const Table = ({ myName, anime }) => {
+  const handleDelete = (id) => {
+    fetch(`http://localhost:8000/vote/${id}`, {
+      method: 'DELETE'
+    }) .then(() => {
+      const updatedVote = vote.filter((item) => item.id !== id);
+      setVote(updatedVote);
+    })
+    .catch(error => console.error('Error deleting vote:', error));
+
+  }
+
+  const handleEdit = (id) => {
+    fetch(`http://localhost:8000/vote/${id}`)
+    .then(response => response.json())
+      .then(data => {
+        setEditId(data);
+      })
+  }
+  
+
   return (
-    <div class="flex-col container flex items-center justify-center mt-12 mx-auto">
-  <div class="overflow-x-auto]">
-    <div class=" inline-block align-middle">
-      <div class="overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200">
+    <div className="flex-col container flex items-center justify-center my-12 mx-auto">
+  <div className="overflow-x-auto]">
+    <div className=" inline-block align-middle">
+      <div className="overflow-hidden">
+        <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black font-poppins uppercase">My Name</th>
-              <th scope="col" class="px-6 py-3 text-left text-s font-medium text-black font-poppins uppercase">Favorite Anime</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">My Name</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Favorite Anime</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Delete</th>
+              <th scope="col" className="px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Edit</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
-            <tr class="hover:bg-[#ff58e7]">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{myName}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{anime}</td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a class="text-blue-500 hover:text-blue-700" href="#">Delete</a>
-              </td>
-            </tr>
+            {vote.map((vote) => (
+              <tr class="hover:bg-[#ff58e7]" id={vote.id}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{vote.myName}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{vote.anime}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <UserIcon onClick={() => handleDelete(vote.id)} className="w-6 h-6 mx-3 text-gray-300" aria-hidden="true" />
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <PencilIcon onClick={() => handleEdit(vote.id)} className="w-6 h-6 mx-3 text-gray-300" aria-hidden="true" />
+                </td>
+              </tr>
+            ))}
 
           </tbody>
         </table>

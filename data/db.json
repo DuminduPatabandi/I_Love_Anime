@@ -1,0 +1,14 @@
+{
+  "vote": [
+    {
+      "myName": "Katarina",
+      "anime": "Naruto",
+      "id": 1
+    },
+    {
+      "myName": "Babara",
+      "anime": "Other",
+      "id": 2
+    }
+  ]
+}

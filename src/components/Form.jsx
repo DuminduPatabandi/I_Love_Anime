@@ -7,13 +7,34 @@ import Table from "./Table";
 const Form = () => {
 
   const [myName, setMyName] = useState('I');
-  const [anime, setAnime] = useState('');
-  const [tableData, setTableData] = useState([]);
+  const [anime, setAnime] = useState('Naruto');
+  const [vote, setVote] = useState(null);
 
-  function handleSubmit()  {
+  const fetchVoteData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/vote');
+      const data = await response.json();
+      setVote(data);
+    } catch (error) {
+      console.error('Error fetching vote data:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault()
+    const vote = { myName, anime }
+
+      fetch('http://localhost:8000/vote', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(vote)
+      }).then(() => fetchVoteData())
+
   }
 
+  useEffect(() => {
+    fetchVoteData();
+  },[])
 
 
   return (
@@ -40,6 +61,8 @@ const Form = () => {
             <input
               type="text"
               name="username"
+              value={myName}
+              required
               className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               onChange={(e) => setMyName(e.target.value)}
               placeholder="Your Name"
@@ -50,7 +73,13 @@ const Form = () => {
             <span className="absolute">
             <FaceSmileIcon className="w-6 h-6 mx-3 text-gray-300" aria-hidden="true" />
             </span>
-            <select onChange={(e) => setAnime(e.target.value)} value={anime} name="anime" className=" block w-full py-3 text-gray-400 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 appearance-none">
+            <select 
+              onChange={(e) => setAnime(e.target.value)} 
+              value={anime} 
+              required
+              name="anime" 
+              className=" block w-full py-3 text-gray-400 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 appearance-none"
+            >
               <option value='Naruto'>Naruto</option>
               <option value='One Piece'>One Piece</option>
               <option value='Attack on Titan'>Attack on Titan</option>
@@ -69,15 +98,11 @@ const Form = () => {
             >
               Vote
             </button>
-       
-
-           
-
           </div>
         </form>
       </div>
 
-      <Table myName={myName} anime={anime}/>
+      {vote && <Table vote={vote} setVote={setVote}/>}
 
     </>
   );
