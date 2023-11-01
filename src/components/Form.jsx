@@ -10,6 +10,10 @@ const Form = () => {
   const [anime, setAnime] = useState('Naruto');
   const [vote, setVote] = useState(null);
   const [editId, setEditId] = useState(null);
+  const [chartData, setChartData] = useState({
+    xAxisData: [],
+    yAxisData: [],
+  });
 
   const fetchVoteData = async () => {
     try {
@@ -59,6 +63,8 @@ const Form = () => {
   },[])
 
 
+
+
   return (
     <>
       <div className="container flex items-center justify-center px-6 mx-auto">
@@ -103,9 +109,7 @@ const Form = () => {
               className=" block w-full py-3 text-gray-400 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 appearance-none"
             >
               <option value='Naruto'>Naruto</option>
-              <option value='One Piece'>One Piece</option>
-              <option value='Attack on Titan'>Attack on Titan</option>
-              <option value='Death note'>Death note</option>
+              <option value='Boruto'>Boruto</option>
               <option value='Other'>Other</option>
             </select>
 
@@ -124,7 +128,7 @@ const Form = () => {
         </form>
       </div>
 
-      {vote && <Table vote={vote} setVote={setVote} editVote={editVote}/>}
+      {vote && <Table vote={vote} setVote={setVote} editVote={editVote} chartData={chartData} setChartData={setChartData} />}
 
     </>
   );

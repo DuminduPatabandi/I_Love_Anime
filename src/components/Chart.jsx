@@ -2,34 +2,50 @@ import React, { useEffect } from "react";
 import * as echarts from 'echarts';
 
 const Chart = ({ data }) => {
-  useEffect(() => {
-    let chartContainer = document.getElementById('chart-container');
-    let chart = echarts.init(chartContainer);
 
-    let options = {
+  useEffect(() => {
+    const animeCounts = {};
+    data.forEach((item) => {
+      const { anime } = item;
+      if (anime in animeCounts) {
+        animeCounts[anime] += 1;
+      } else {
+        animeCounts[anime] = 1;
+      }
+    });
+
+    const xAxisData = Object.keys(animeCounts);
+    const yAxisData = xAxisData.map((anime) => animeCounts[anime]);
+
+    const chartDom = document.getElementById('chart');
+    const myChart = echarts.init(chartDom);
+
+    const option = {
+      title: {
+        text: 'Voting Results',
+      },
+      textStyle: {
+        align: 'center', 
+      },
       xAxis: {
         type: 'category',
-        data: data.map((item) => item.anime),
+        data: xAxisData,
       },
       yAxis: {
         type: 'value',
       },
       series: [
         {
-          data: data.map((item) => item.votes), // Assuming 'votes' is the key for the number of votes
+          data: yAxisData,
           type: 'bar',
         },
       ],
     };
 
-    chart.setOption(options);
-
-    return () => {
-      chart.dispose();
-    };
+    myChart.setOption(option);
   }, [data]);
 
-  return <div id="chart-container" style={{ width: '100%', height: '400px' }}></div>;
-};
+  return <div id="chart" style={{ width: '90%', height: '300px' }}></div>;
+}
 
 export default Chart;

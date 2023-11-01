@@ -1,19 +1,24 @@
 {
   "vote": [
     {
-      "myName": "Vihanga",
-      "anime": "One Piece",
+      "myName": "Babara",
+      "anime": "Naruto",
       "id": 2
     },
     {
-      "myName": "Babara",
-      "anime": "Naruto",
+      "myName": "Ashly",
+      "anime": "Boruto",
       "id": 3
     },
     {
-      "myName": "Kasun",
-      "anime": "Attack on Titan",
+      "myName": "Saman",
+      "anime": "Boruto",
       "id": 4
+    },
+    {
+      "myName": "Sasanga",
+      "anime": "Other",
+      "id": 5
     }
   ]
 }
