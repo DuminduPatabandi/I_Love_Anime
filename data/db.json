@@ -1,3 +1,14 @@
 {
-  "vote": []
+  "vote": [
+    {
+      "myName": "I",
+      "anime": "Naruto",
+      "id": 1
+    },
+    {
+      "myName": "Saman",
+      "anime": "Boruto",
+      "id": 2
+    }
+  ]
 }

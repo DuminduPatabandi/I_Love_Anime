@@ -43,12 +43,24 @@ const Chart = ({ data }) => {
           type: 'bar',
         },
       ],
-    };
+    };  
+    
 
     myChart.setOption(option);
+
+    const resizeHandler = () => {
+      myChart.resize();
+    };
+
+    window.addEventListener('resize', resizeHandler);
+
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+    
   }, [data]);
 
-  return <div id="chart" style={{ width: '100%', height: '300px' }}></div>;
+  return <div id="chart" style={{ width: '80%', height: '300px' }}></div>;
 }
 
 export default Chart;

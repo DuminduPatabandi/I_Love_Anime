@@ -60,9 +60,11 @@ const Table = ({ vote, setVote, editVote, chartData, setChartData }) => {
 
           </tbody>
         </table>
-        <button className="py-2 px-4 my-6 bg-red-500 hover:bg-red-700 text-white font-poppins font-medium duration-500" onClick={handleClearData}>Clear All</button>
+          <div className="pt-12">{vote && <Chart data={vote} chartData={chartData} setChartData={setChartData} />}</div>
+        <div className="flex justify-end mx-4 sm:mx-0">
+          <button className="py-2 px-4 my-6 bg-red-500 hover:bg-red-700 text-white font-poppins font-medium duration-500" onClick={handleClearData}>Clear All</button>
+        </div>
       </div>
-        <div className="pt-12">{vote && <Chart data={vote} chartData={chartData} setChartData={setChartData} />}</div>
     </div>
   </div>
 </div>
