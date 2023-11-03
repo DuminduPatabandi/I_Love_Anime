@@ -4,6 +4,7 @@ import * as echarts from 'echarts';
 const Chart = ({ data }) => {
 
   useEffect(() => {
+
     const animeCounts = {};
     data.forEach((item) => {
       const { anime } = item;
@@ -26,7 +27,9 @@ const Chart = ({ data }) => {
       },
       textStyle: {
         align: 'center', 
+        color: 'black',
       },
+      color: '#ff58e7',
       xAxis: {
         type: 'category',
         data: xAxisData,
@@ -45,7 +48,7 @@ const Chart = ({ data }) => {
     myChart.setOption(option);
   }, [data]);
 
-  return <div id="chart" style={{ width: '90%', height: '300px' }}></div>;
+  return <div id="chart" style={{ width: '100%', height: '300px' }}></div>;
 }
 
 export default Chart;

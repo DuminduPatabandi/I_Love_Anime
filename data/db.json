@@ -1,24 +1,3 @@
 {
-  "vote": [
-    {
-      "myName": "Babara",
-      "anime": "Naruto",
-      "id": 2
-    },
-    {
-      "myName": "Ashly",
-      "anime": "Boruto",
-      "id": 3
-    },
-    {
-      "myName": "Saman",
-      "anime": "Boruto",
-      "id": 4
-    },
-    {
-      "myName": "Sasanga",
-      "anime": "Other",
-      "id": 5
-    }
-  ]
+  "vote": []
 }

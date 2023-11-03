@@ -38,21 +38,21 @@ const Table = ({ vote, setVote, editVote, chartData, setChartData }) => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
-              <th scope="col" className="px-2 sm:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">My Name</th>
-              <th scope="col" className="px-2 sm:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Favorite Anime</th>
-              <th scope="col" className="px-2 sm:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Delete</th>
-              <th scope="col" className="px-2 sm:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Edit</th>
+              <th scope="col" className="px-2 xs:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">My Name</th>
+              <th scope="col" className="px-2 xs:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Favorite Anime</th>
+              <th scope="col" className="px-2 xs:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Delete</th>
+              <th scope="col" className="px-2 xs:px-6 py-3 text-left text-xs md:text-sm font-medium text-black font-poppins uppercase">Edit</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
             {vote.map((vote) => (
               <tr class="hover:bg-[#f7c0ee]" id={vote.id}>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{vote.myName}</td>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-800">{vote.anime}</td>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-2 xs:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{vote.myName}</td>
+                <td className="px-2 xs:px-6 py-4 whitespace-nowrap text-sm text-gray-800">{vote.anime}</td>
+                <td className="px-2 xs:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <TrashIcon onClick={() => handleDelete(vote.id)} className="w-6 h-6 mx-3 text-red-500 hover:scale-125 duration-300" aria-hidden="true" />
                 </td>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-2 xs:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <PencilIcon onClick={() => handleEdit(vote.id)} className="w-6 h-6 mx-3 text-black hover:scale-125 duration-300" aria-hidden="true" />
                 </td>
               </tr>
@@ -62,7 +62,7 @@ const Table = ({ vote, setVote, editVote, chartData, setChartData }) => {
         </table>
         <button className="py-2 px-4 my-6 bg-red-500 hover:bg-red-700 text-white font-poppins font-medium duration-500" onClick={handleClearData}>Clear All</button>
       </div>
-        <div className="pt-12 justify-center flex">{vote && <Chart data={vote} chartData={chartData} setChartData={setChartData} />}</div>
+        <div className="pt-12">{vote && <Chart data={vote} chartData={chartData} setChartData={setChartData} />}</div>
     </div>
   </div>
 </div>
